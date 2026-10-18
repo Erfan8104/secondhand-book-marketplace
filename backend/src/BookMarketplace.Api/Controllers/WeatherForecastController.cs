@@ -29,4 +29,16 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+    public sealed class ValidationTestRequest
+{
+    [System.ComponentModel.DataAnnotations.Required]
+    public string Name { get; init; } = string.Empty;
+}
+
+[HttpPost("validation-test")]
+public IActionResult ValidationTest(
+    [FromBody] ValidationTestRequest request)
+{
+    return Ok(new { message = "Validation passed", request.Name });
+}
 }
