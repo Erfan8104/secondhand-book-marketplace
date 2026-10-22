@@ -10,6 +10,8 @@ public sealed class MarketplaceDbContext(
 {
     public DbSet<User> Users => Set<User>();
 
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();   
+
     public DbSet<Book> Books => Set<Book>();
 
     public DbSet<Category> Categories => Set<Category>();
