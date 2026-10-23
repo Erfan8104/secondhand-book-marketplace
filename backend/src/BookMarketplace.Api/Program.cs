@@ -7,13 +7,14 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString =
-    Environment.GetEnvironmentVariable(
-        "BOOKMARKETPLACE_CONNECTION_STRING");
+    builder.Configuration.GetConnectionString("Default");
 
 if (string.IsNullOrWhiteSpace(connectionString))
 {
     throw new InvalidOperationException(
-        "BOOKMARKETPLACE_CONNECTION_STRING environment variable is missing.");
+        "Connection string 'ConnectionStrings:Default' is missing. " +
+        "Use 'dotnet user-secrets' in development or the " +
+        "ConnectionStrings__Default environment variable in production.");
 }
 
 builder.Logging.ClearProviders();
