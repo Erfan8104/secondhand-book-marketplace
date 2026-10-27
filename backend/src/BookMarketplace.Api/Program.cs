@@ -3,6 +3,7 @@ using BookMarketplace.Api.Middleware;
 using BookMarketplace.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using BookMarketplace.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,7 @@ builder.Services.AddProblemDetails();
 
 builder.Services.AddDbContext<MarketplaceDbContext>(options =>
     options.UseNpgsql(connectionString));
+builder.Services.AddAuthInfrastructure();   
 
 builder.Services.AddHealthChecks()
     .AddDbContextCheck<MarketplaceDbContext>();
